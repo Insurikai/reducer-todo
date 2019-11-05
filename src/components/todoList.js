@@ -6,7 +6,7 @@ export default () => {
     return(
     <ul className="todo-list">
         {
-            list.map( item => <li>{item.item}</li>)
+            list.map( item => <li key={item.id}>{item.item}</li>)
         }
     </ul>
     )
