@@ -11,12 +11,18 @@ import {reducer, data} from "./reducers/reducer";
 
 function App() {
   const [list, setList] = useState(reducer(data,{type: ""}))
+  const addItem = (item) => {
+    setList(reducer(list,{type:"Add", payload: item}))
+  }
+  const clearCompleted = () => {
+    setList(reducer(list,{type:"Clear"}))
+  }
   return (
     <div className="App">
       <TodoContext.Provider value={{
         todoList: list,
-        add: (item)=>console.log(item),
-        clear: ()=>console.log("clear")
+        add: addItem,
+        clear: clearCompleted
       }}>
         <TodoList/>
         <AddTodoForm/>
