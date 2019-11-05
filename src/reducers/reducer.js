@@ -21,3 +21,5 @@ const data = [
         id: 3457834
     }
 ]
+
+export {reducer, data}
