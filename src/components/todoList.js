@@ -1,8 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import TodoContext from '../contexts/TodoContext';
 
 export default () => {
+    const list = useContext(TodoContext).todoList;
     return(
-    <div className="todo-list">
-    </div>
+    <ul className="todo-list">
+        {
+            list.map( item => <li>{item.item}</li>)
+        }
+    </ul>
     )
 }
