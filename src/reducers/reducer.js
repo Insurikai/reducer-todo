@@ -7,7 +7,6 @@ const reducer = (state, action) =>{
         default:
             return state;
     }
-    return 
 }
 const data = [
     {

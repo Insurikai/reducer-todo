@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <TodoContext.Provider value={{
         todoList: list,
-        add: ()=>console.log("add"),
+        add: (item)=>console.log(item),
         clear: ()=>console.log("clear")
       }}>
         <TodoList/>
