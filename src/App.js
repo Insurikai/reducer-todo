@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-
+import React, {useReducer} from 'react';
+import "./App.css";
 //Components
 import TodoList from './components/todoList';
 import ClearTodo from "./components/clearTodo";
@@ -10,21 +10,16 @@ import TodoContext from "./contexts/TodoContext";
 import {reducer, data} from "./reducers/reducer";
 
 function App() {
-  const [list, setList] = useState(reducer(data,{type: ""}))
-  const addItem = (item) => {
-    setList(reducer(list,{type:"Add", payload: item}))
-  }
-  const clearCompleted = () => {
-    setList(reducer(list,{type:"Clear"}))
-  }
+  const [todoItems, dispatch] = useReducer(reducer, data)
   return (
     <div className="App">
       <TodoContext.Provider value={{
-        todoList: list,
-        add: addItem,
-        clear: clearCompleted
+        todoList: todoItems,
+        add: (item) => {dispatch({type: "Add", payload: item})},
+        toggleItem: (id) => {dispatch({type: "Toggle", payload: id})},
+        clear: () => {dispatch({type: "Clear"})}
       }}>
-        <TodoList/>
+        <TodoList />
         <AddTodoForm/>
         <ClearTodo/>
       </TodoContext.Provider>

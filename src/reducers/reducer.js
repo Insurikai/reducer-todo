@@ -2,8 +2,13 @@ const reducer = (state, action) =>{
     switch(action.type){
         case "Add":
             return [...state, action.payload]
-        case "Clear Completed":
+        case "Clear":
             return state.filter(todoItem => !todoItem.completed)
+        case "Toggle":
+            return state.map(item => {
+                if(item.id === action.payload){ item.completed = !item.completed; }
+                return item
+            })
         default:
             return state;
     }
@@ -16,7 +21,7 @@ const data = [
     },
     {
         item: 'item2',
-        completed: false,
+        completed: true,
         id: 3457834
     }
 ]
